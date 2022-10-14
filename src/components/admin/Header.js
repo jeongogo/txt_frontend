@@ -13,6 +13,9 @@ const Header = () => {
           <li>
             <Link to='/admin/users'>회원 목록</Link>
           </li>
+          <li>
+            <Link to='/admin/reservation'>예약 현황</Link>
+          </li>
         </ul>
       </div>
     </Container>
@@ -35,10 +38,10 @@ const Container = styled.div`
     margin-top: 3rem;
     ul {
       li {
-        border-bottom: 1px solid #aaa;
+        border-bottom: 1px solid #666;
         a {
           display: block;
-          padding: 0.5rem 0;
+          padding: 1rem 0;
           color: white;
         }
       }

@@ -12,26 +12,31 @@ const Header = ({ theme }) => {
         <Link to='/'>XION.T</Link>
       </div>
       <div className="tnb">
-          {currentUser.id === ''
-            ?
-              <ul>
+        {currentUser.id === ''
+          ?
+            <ul>
+              <li>
+                <Link to='/login'>로그인</Link>
+              </li>
+              <li>
+                <Link to='/register'>회원가입</Link>
+              </li>
+            </ul>
+          :
+            <ul>
+              {currentUser.isAdmin &&
                 <li>
-                  <Link to='/login'>로그인</Link>
+                  <Link to='/admin'>관리자</Link>
                 </li>
-                <li>
-                  <Link to='/register'>회원가입</Link>
-                </li>
-              </ul>
-            :
-              <ul>
-                <li>
-                  <Link to='/record'>기록보기</Link>
-                </li>
-                <li>
-                  <Link to='/mypage'>마이페이지</Link>
-                </li>
-              </ul>
-          }
+              }
+              <li>
+                <Link to='/record'>기록보기</Link>
+              </li>
+              <li>
+                <Link to='/mypage'>마이페이지</Link>
+              </li>
+            </ul>
+        }
       </div>
     </Container>
   )

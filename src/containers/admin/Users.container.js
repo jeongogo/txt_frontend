@@ -1,8 +1,8 @@
 import React from 'react'
 import { useQuery } from "react-query";
 import client from "../../lib/api/client";
-import AdminHeader from '../../components/admin/Header';
-import AdminUsers from '../../components/admin/Users';
+import Header from '../../components/admin/Header';
+import Users from '../../components/admin/Users';
 
 const UsersContainer = () => {
   const getUsers = async () => {
@@ -14,8 +14,8 @@ const UsersContainer = () => {
 
   return (
     <>
-      <AdminHeader />
-      <AdminUsers users={users} />
+      <Header />
+      <Users users={users} />
     </>
   )
 }

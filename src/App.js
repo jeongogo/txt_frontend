@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import useStore from "./modules/store";
 import AdminHomePage from './pages/admin/Home.page';
 import AdminUsersPage from './pages/admin/Users.page';
+import AdminReservationPage from './pages/admin/Reservation.page';
+import AdminRecordPage from './pages/admin/Record.page';
 import HomePage from './pages/home/Home.page';
 import LoginPage from './pages/auth/Login.page';
 import RegisterPage from './pages/auth/Register.page';
@@ -40,6 +42,8 @@ function App() {
           <>
             <Route path="/admin" element={<AdminHomePage />} />
             <Route path="/admin/users" element={<AdminUsersPage />} />
+            <Route path="/admin/reservation" element={<AdminReservationPage />} />
+            <Route path="/admin/record/:id" element={<AdminRecordPage />} />
           </>
       }
     </Routes>

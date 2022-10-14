@@ -1,12 +1,14 @@
 import React from 'react'
+import Loader from '../common/Loader';
 import styled from 'styled-components';
 
 const Users = ({ users }) => {
   return (
     <Container className='admin-container'>
+      <h1 className='title'>회원 목록</h1>
       {users.isLoading
         ?
-          <div>loading</div>
+          <Loader />
         :
         <ul>
           {users.data.users.map((u) => (

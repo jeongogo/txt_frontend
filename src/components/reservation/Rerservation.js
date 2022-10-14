@@ -23,7 +23,7 @@ const Rerservation = ({ events, mutation, openWritePopup, setOpenWritePopup }) =
   }
   
   const onRegister = () => {
-    mutation.mutate({ id: currentUser.id, title: type, date: date });
+    mutation.mutate({ id: currentUser.id, title: type, date: date, userName: currentUser.name });
     setOpenWritePopup(false);
   }
 

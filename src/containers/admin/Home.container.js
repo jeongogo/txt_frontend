@@ -1,12 +1,12 @@
 import React from 'react'
-import AdminHeader from '../../components/admin/Header';
-import AdminHome from '../../components/admin/Home';
+import Header from '../../components/admin/Header';
+import Home from '../../components/admin/Home';
 
 const HomeContainer = () => {
   return (
     <>
-      <AdminHeader />
-      <AdminHome />
+      <Header />
+      <Home />
     </>
   )
 }
