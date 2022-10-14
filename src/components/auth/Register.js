@@ -9,10 +9,25 @@ const Register = ({ onRegister }) => {
     <Container>
       <form onSubmit={handleSubmit((data) => onRegister(data))} autoComplete="off">
         <div className='input-box'>
+          <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
+        </div>
+        <div className='input-box'>
           <input {...register("name", { required: true })} type="text" required placeholder='이름' />
         </div>
         <div className='input-box'>
-          <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
+          <input {...register("height", { required: true })} type="text" required placeholder='키(cm)' />
+        </div>
+        <div className='input-box'>
+          <input {...register("weight", { required: true })} type="text" required placeholder='체중(kg)' />
+        </div>
+        <div className='input-box'>
+          <input {...register("birthday", { required: true })} type="date" required placeholder='생년월일' />
+        </div>
+        <div className='input-box'>
+          <input {...register("gender")} type="radio" id='mail' value="남자" />
+          <label htmlFor="mail">남자</label>
+          <input {...register("gender")} type="radio" id='femail' value="여자" />
+          <label htmlFor="femail">여자</label>
         </div>
         <div className='input-box'>
           <input {...register("password", { required: true })} type="password" required placeholder='비밀번호' />
