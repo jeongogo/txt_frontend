@@ -12,7 +12,13 @@ const Register = ({ onRegister }) => {
           <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
         </div>
         <div className='input-box'>
+          <input {...register("password", { required: true })} type="password" required placeholder='비밀번호' />
+        </div>
+        <div className='input-box'>
           <input {...register("name", { required: true })} type="text" required placeholder='이름' />
+        </div>
+        <div className='input-box'>
+          <input {...register("phoneNumber", { required: true })} type="text" required placeholder='연락처' />
         </div>
         <div className='input-box'>
           <input {...register("height", { required: true })} type="text" required placeholder='키(cm)' />
@@ -28,9 +34,6 @@ const Register = ({ onRegister }) => {
           <label htmlFor="mail">남자</label>
           <input {...register("gender")} type="radio" id='femail' value="여자" />
           <label htmlFor="femail">여자</label>
-        </div>
-        <div className='input-box'>
-          <input {...register("password", { required: true })} type="password" required placeholder='비밀번호' />
         </div>
         <div className='btn-box'>
           <button type='submit' className='btn md round red'>회원가입</button>

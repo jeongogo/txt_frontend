@@ -1,10 +1,24 @@
 import React from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import useStore from "../../modules/store";
-import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Header = ({ theme }) => {
+  const navigate = useNavigate();
   const currentUser = useStore((state) => state.currentUser);
+  const setCurrentUser = useStore((state) => state.setCurrentUser);
+
+  const onLogout = () => {
+    const user = {
+      id: '',
+      email: '',
+      name: '',
+      accessToken: '',
+      isAdmin: ''
+    }
+    setCurrentUser(user);
+    navigate('/');
+  }
 
   return (
     <Container className={theme === 'dark' ? 'dark' : 'light' }>
@@ -33,7 +47,10 @@ const Header = ({ theme }) => {
                 <Link to='/record'>기록보기</Link>
               </li>
               <li>
-                <Link to='/mypage'>마이페이지</Link>
+                <Link to='/profile'>마이페이지</Link>
+              </li>
+              <li>
+                <button type='button' onClick={onLogout}>로그아웃</button>
               </li>
             </ul>
         }
@@ -65,8 +82,9 @@ const Container = styled.header`
       display: flex;
       li {
         margin-left: 1rem;
-        a {
+        a, button {
           font-weight: 300;
+          color: #fff;
         }
       }
     }
