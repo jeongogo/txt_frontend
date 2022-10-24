@@ -13,9 +13,8 @@ const Users = ({ users }) => {
   return (
     <Container className='admin-container'>
       <h1 className='title'>회원 목록</h1>
-      {users.isLoading
-        ?
-          <Loader />
+      {users.isLoading ?
+        <Loader />
         :
         <ul>
           {users.data.users.map((u) => (

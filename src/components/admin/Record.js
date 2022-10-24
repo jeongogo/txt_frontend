@@ -5,14 +5,10 @@ import styled from 'styled-components';
 const Record = ({ handleRegister }) => {
   const { register, handleSubmit, formState: { errors }} = useForm();
 
-  const onRegister = (data) => {
-    handleRegister(data);
-  };
-
   return (
     <Container className='admin-container'>
       <h1 className='title'>측정하기</h1>
-      <form onSubmit={handleSubmit(onRegister)} autoComplete="off">
+      <form onSubmit={handleSubmit((data) => handleRegister(data))} autoComplete="off">
         <h2>근력 및 파워</h2>
         <div className="input-wrap">
           <label>최대 근력</label>
@@ -27,13 +23,13 @@ const Record = ({ handleRegister }) => {
         <h2>2. 탄력 및 반응속도</h2>
         <div className="input-wrap">
           <label>탄력 (평균)</label>
-          <input type="text" {...register("elasticityAvg1st", { required: true })} placeholder="1" />
-          <input type="text" {...register("elasticityAvg2nd", { required: true })} placeholder="2" />
+          <input type="text" {...register("RSIAvg1st", { required: true })} placeholder="1" />
+          <input type="text" {...register("RSIAvg2nd", { required: true })} placeholder="2" />
         </div>
         <div className="input-wrap">
           <label>탄력 (최대)</label>
-          <input type="text" {...register("elasticityMax1st", { required: true })} placeholder="1" />
-          <input type="text" {...register("elasticityMax2nd", { required: true })} placeholder="2" />
+          <input type="text" {...register("RSIMax1st", { required: true })} placeholder="1" />
+          <input type="text" {...register("RSIMax2nd", { required: true })} placeholder="2" />
         </div>
         <div className="input-wrap">
           <label>반응 속도</label>
@@ -62,7 +58,7 @@ const Record = ({ handleRegister }) => {
           <input type="text" {...register("gripStrengthR", { required: true })} placeholder="R" />
         </div>
         <div className="btn-wrap">
-          <button type='submit' className='btn lg round red'>등록하기</button>
+          <button type='submit' className='btn md round red'>등록하기</button>
         </div>
       </form>
     </Container>

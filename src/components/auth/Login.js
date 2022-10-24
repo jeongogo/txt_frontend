@@ -2,13 +2,13 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
 
-const Login = ({ onLogin }) => {
+const Login = ({ handleLogin }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <Container className='container'>
       <div className="content-wrap">
-        <form onSubmit={handleSubmit((data) => onLogin(data))} autoComplete="off">
+        <form onSubmit={handleSubmit((data) => handleLogin(data))} autoComplete="off">
           <div className='input-box'>
             <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
           </div>

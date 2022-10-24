@@ -19,32 +19,30 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       {/* <Route path="/*" element={<NotFoundPage />} /> */}
-      {currentUser.id === ''
-        ?
-          <>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/reservation/:type" element={<LoginPage />} />
-            <Route path="/profile" element={<LoginPage />} />
-            <Route path="/record" element={<LoginPage />} />
-          </>
+      {currentUser.id === '' ?
+        <>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/reservation/:type" element={<LoginPage />} />
+          <Route path="/profile" element={<LoginPage />} />
+          <Route path="/record" element={<LoginPage />} />
+        </>
         :
-          <>
-            <Route path="/login" element={<HomePage />} />
-            <Route path="/register" element={<HomePage />} />
-            <Route path="/reservation/:type" element={<ReservationPage />} />
-            <Route path="/record/:id" element={<RecordPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </>
+        <>
+          <Route path="/login" element={<HomePage />} />
+          <Route path="/register" element={<HomePage />} />
+          <Route path="/reservation/:type" element={<ReservationPage />} />
+          <Route path="/record/:id" element={<RecordPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </>
       }
-      {currentUser.isAdmin
-        &&
-          <>
-            <Route path="/admin" element={<AdminHomePage />} />
-            <Route path="/admin/users" element={<AdminUsersPage />} />
-            <Route path="/admin/reservation" element={<AdminReservationPage />} />
-            <Route path="/admin/record/:id" element={<AdminRecordPage />} />
-          </>
+      {currentUser.isAdmin &&
+        <>
+          <Route path="/admin" element={<AdminHomePage />} />
+          <Route path="/admin/users" element={<AdminUsersPage />} />
+          <Route path="/admin/reservation" element={<AdminReservationPage />} />
+          <Route path="/admin/record/:id" element={<AdminRecordPage />} />
+        </>
       }
     </Routes>
   );

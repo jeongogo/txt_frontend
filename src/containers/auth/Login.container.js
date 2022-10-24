@@ -8,23 +8,26 @@ const LoginContainer = () => {
   const navigate = useNavigate();
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
-  const onLogin = async (userData) => {
-    const { data } = await client.post('/api/auth/login', userData);
-    if (data.status === 'success') {
+  const handleLogin = async (userData) => {
+    await client.post('/api/auth/login', userData)
+    .then((res) => {
+      const { user } = res.data;
       setCurrentUser({ 
-        id: data.user._id,
-        email: data.user.email,
-        name: data.user.name,
-        accessToken: data.accessToken,
-        isAdmin: data.user.isAdmin
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        accessToken: res.data.accessToken,
+        isAdmin: user.isAdmin
       });
       console.log(data)
       navigate('/');
-    }
+    }).catch((e) => {
+      console.log(e)
+    });
   }
 
   return (
-    <Login onLogin={onLogin} />
+    <Login handleLogin={handleLogin} />
   )
 }
 

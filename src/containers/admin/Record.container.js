@@ -9,8 +9,12 @@ const RecordContainer = () => {
   const navigate = useNavigate();
   
   const handleRegister = async (recordData) => {
-    const { data } = await client.post(`/api/admin/record/${id}`, recordData);
-    navigate('/admin/users');
+    await client.post(`/api/admin/record/${id}`, recordData)
+    .then((res) => {
+      navigate('/admin/users');
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   return (

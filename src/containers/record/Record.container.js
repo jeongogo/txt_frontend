@@ -6,8 +6,17 @@ import Record from '../../components/record/Record';
 const RecordContainer = () => {
   const { id } = useParams();
   
+  const handleRegister = async (recordData) => {
+    client.post(`/api/admin/record/${id}`, recordData)
+    .then((res) => {
+
+    }).catch((e) => {
+      console.log(e);
+    });
+  }
+
   return (
-    <Record />
+    <Record handleRegister={handleRegister} />
   )
 }
 

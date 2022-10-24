@@ -8,22 +8,26 @@ const RegisterContainer = () => {
   const navigate = useNavigate();
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
-  const onRegister = async (userData) => {
-    const { data } = await client.post('/api/auth/register', userData);
-    if (data.status === 'success') {
+  const handleRegister = async (userData) => {
+    await client.post('/api/auth/register', userData)
+    .then((res) => {
+      const { user } = res.data;
       setCurrentUser({ 
-        id: data.user._id,
-        email: data.user.email,
-        name: data.user.name,
-        accessToken: data.accessToken,
-        isAdmin: data.user.isAdmin
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        accessToken: res.data.accessToken,
+        isAdmin: user.isAdmin
       });
       navigate('/');
-    }
+
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   return (
-    <Register onRegister={onRegister} />
+    <Register handleRegister={handleRegister} />
   )
 }
 

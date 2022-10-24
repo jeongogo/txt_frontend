@@ -6,8 +6,13 @@ let store = (set) => ({
     id: '',
     email: '',
     name: '',
+    phoneNumber: '',
+    height: '',
+    weight: '',
+    birthday: '',
+    gender: '',
+    isAdmin: '',
     accessToken: '',
-    isAdmin: ''
   },
   setCurrentUser: (user) => set(() => ({ currentUser: user })),
 });
