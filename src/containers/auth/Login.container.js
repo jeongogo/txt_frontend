@@ -19,7 +19,7 @@ const LoginContainer = () => {
         accessToken: res.data.accessToken,
         isAdmin: user.isAdmin
       });
-      console.log(data)
+      console.log(res.data);
       navigate('/');
     }).catch((e) => {
       console.log(e)

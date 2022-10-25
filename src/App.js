@@ -9,6 +9,7 @@ import LoginPage from './pages/auth/Login.page';
 import RegisterPage from './pages/auth/Register.page';
 import ProfilePage from './pages/auth/Profile.page';
 import RecordPage from './pages/record/Record.page';
+import RecordDetailPage from './pages/record/Detail.page';
 import ReservationPage from './pages/reservation/Reservation.page';
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" element={<HomePage />} />
           <Route path="/reservation/:type" element={<ReservationPage />} />
           <Route path="/record/:id" element={<RecordPage />} />
+          <Route path="/record/detail/:id" element={<RecordDetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </>
       }
