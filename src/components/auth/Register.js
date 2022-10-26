@@ -9,7 +9,7 @@ const Register = ({ handleRegister }) => {
     <Container>
       <form onSubmit={handleSubmit((data) => handleRegister(data))} autoComplete="off">
         <div className='input-box'>
-          <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
+          <input {...register("email", { required: true })} type="email" required placeholder='이메일' />
         </div>
         <div className='input-box'>
           <input {...register("password", { required: true })} type="password" required placeholder='비밀번호' />
