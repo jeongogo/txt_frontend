@@ -23,7 +23,9 @@ const Header = ({ theme }) => {
   return (
     <Container className={theme === 'dark' ? 'dark' : 'light' }>
       <div className="logo">
-        <Link to='/'>XION.T</Link>
+        <Link to='/'>
+          <img src="/images/logo.png" alt="" />
+        </Link>
       </div>
       <div className="tnb">
         {currentUser.id === ''
@@ -40,11 +42,11 @@ const Header = ({ theme }) => {
             <ul>
               {currentUser.isAdmin &&
                 <li>
-                  <Link to='/admin'>관리자</Link>
+                  <Link to='/admin' target='_blank'>관리자</Link>
                 </li>
               }
               <li>
-                <Link to='/record'>기록보기</Link>
+                <Link to={`/record/${currentUser.id}`}>기록보기</Link>
               </li>
               <li>
                 <Link to='/profile'>마이페이지</Link>
@@ -60,31 +62,34 @@ const Header = ({ theme }) => {
 }
 
 const Container = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3rem;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  z-index: 2;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
+  padding: 0 3rem;
+  color: #000;
   &.dark {
-    color: #fafafa;
+    a, button {
+      color: #fafafa;
+    }
   }
   .logo {
     a {
-      font-weight: bold;
+      img {
+        display: block;
+        width: 18rem;
+      }
     }
   }
   .tnb {
     ul {
       display: flex;
       li {
-        margin-left: 1rem;
+        margin-left: 2rem;
         a, button {
+          font-size: 1.6rem;
           font-weight: 300;
-          color: #fff;
         }
       }
     }

@@ -11,6 +11,10 @@ const LoginContainer = () => {
   const handleLogin = async (userData) => {
     await client.post('/api/auth/login', userData)
     .then((res) => {
+      if (res.data.status === 'failed') {
+        console.log('error');
+        return false;
+      }
       const { user } = res.data;
       setCurrentUser({ 
         id: user._id,

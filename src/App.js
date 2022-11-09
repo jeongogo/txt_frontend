@@ -11,6 +11,7 @@ import ProfilePage from './pages/auth/Profile.page';
 import RecordPage from './pages/record/Record.page';
 import RecordDetailPage from './pages/record/Detail.page';
 import ReservationPage from './pages/reservation/Reservation.page';
+import TestPage from './pages/Test';
 import './App.css';
 
 function App() {
@@ -20,29 +21,30 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       {/* <Route path="/*" element={<NotFoundPage />} /> */}
-      {currentUser.id === '' ?
+      {currentUser.id === "" ? (
         <>
           <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<LoginPage />} />
         </>
-        :
+      ) : (
         <>
           <Route path="/login" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/reservation/:type" element={<ReservationPage />} />
+          <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/record/:id" element={<RecordPage />} />
           <Route path="/record/detail/:id" element={<RecordDetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </>
-      }
-      {currentUser.isAdmin &&
+      )}
+      {currentUser.isAdmin && (
         <>
           <Route path="/admin" element={<AdminHomePage />} />
           <Route path="/admin/users" element={<AdminUsersPage />} />
           <Route path="/admin/reservation" element={<AdminReservationPage />} />
           <Route path="/admin/record/:id" element={<AdminRecordPage />} />
         </>
-      }
+      )}
+      <Route path="/test" element={<TestPage />} />
     </Routes>
   );
 }

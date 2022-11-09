@@ -2,13 +2,21 @@ import React from 'react';
 import { FiX } from "react-icons/fi";
 import styled from 'styled-components';
 
-const Write = ({ date, onRegister, setOpenWritePopup }) => {
+const Write = ({ setEvent, date, onRegister, setOpenWritePopup }) => {
   return (
     <Container>
       <div className="content">
         <button type='button' className='close' onClick={() => setOpenWritePopup(false)}><FiX /></button>
         <div className='date'>{date}</div>
-        <button type='button' className='btn md round red' onClick={onRegister}>신청하기</button>
+        <div className="select">
+          <select onChange={(e) => setEvent(e.target.value)}>
+            <option value="FOOTBALL">FOOTBALL</option>
+            <option value="TENNIS">TENNIS</option>
+          </select>
+        </div>
+        <div className="btn">
+          <button type='button' className='btn md round red' onClick={onRegister}>신청하기</button>
+        </div>
       </div>
     </Container>
   )
@@ -40,8 +48,16 @@ const Container = styled.div`
       color: #fff;
     }
     .date {
-      margin-bottom: 1.5rem;
       font-size: 1.6rem;
+    }
+    .select {
+      margin-top: 1rem;
+      select {
+        width: 100%;
+      }
+    }
+    .btn {
+      margin-top: 1rem;
     }
   }
 `;

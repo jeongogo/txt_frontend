@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <Container>
       <div className="logo">
-        <Link to='/admin'>XION.T 관리자</Link>
+        <Link to='/admin'>
+          <img src="/images/logo.png" alt="" />
+        </Link>
       </div>
       <div className="lnb">
         <ul>
@@ -14,7 +16,7 @@ const Header = () => {
             <Link to='/admin/users'>회원 목록</Link>
           </li>
           <li>
-            <Link to='/admin/reservation'>예약 현황</Link>
+            <Link to='/admin/reservation'>신청 현황</Link>
           </li>
         </ul>
       </div>
@@ -26,22 +28,24 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 20rem;
+  width: 25rem;
   height: 100vh;
   padding: 3rem 2rem;
   background-color: #222;
   .logo {
-    text-align: center;
-    color: white;
+    img {
+      width: 90%;
+    }
   }
   .lnb {
     margin-top: 3rem;
     ul {
+      border-top: 1px solid #666;
       li {
         border-bottom: 1px solid #666;
         a {
           display: block;
-          padding: 1rem 0;
+          padding: 1.4rem 0;
           color: white;
         }
       }

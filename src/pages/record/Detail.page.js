@@ -1,9 +1,15 @@
 import React from 'react'
-import DetailContainer from '../../containers/record/Detail.container'
+import Header from '../../components/common/Header';
+import DetailContainer from '../../containers/record/Detail.container';
+import Footer from '../../components/common/Footer';
 
 const DetailPage = () => {
   return (
-    <DetailContainer />
+    <>
+      <Header />
+      <DetailContainer />
+      <Footer />
+    </>
   )
 }
 
