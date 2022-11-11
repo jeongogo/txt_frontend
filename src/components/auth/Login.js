@@ -7,8 +7,9 @@ const Login = ({ handleLogin }) => {
 
   return (
     <Container className='container'>
+      <h1>로그인</h1>
       <div className="content-wrap">
-        <form onSubmit={handleSubmit((data) => handleLogin(data))} autoComplete="off">
+        <form onSubmit={handleSubmit((data) => handleLogin(data))}>
           <div className='input-box'>
             <input {...register("email", { required: true })} type="text" required placeholder='이메일' />
           </div>
@@ -28,8 +29,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
   padding-top: 10vh;
+  h1 {
+    font-size: 2.6rem;
+  }
   form {
     width: 25rem;
     .input-box {

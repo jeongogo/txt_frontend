@@ -55,6 +55,10 @@ textarea {
   border-radius: 3px;
 }
 
+input + label {
+  font-size: 1.4rem;
+}
+
 
 /*** Button ***/
 button {

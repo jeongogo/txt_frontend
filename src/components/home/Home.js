@@ -21,6 +21,7 @@ const Home = () => {
 const Container = styled.div`
   background-image: url('/images/main.png');
   background-repeat: no-repeat;
+  background-size: cover;
   .content-wrap {
     display: flex;
     justify-content: center;
@@ -58,6 +59,26 @@ const Container = styled.div`
           color: #fff;
           background-color: #d01c3a;
           border-radius: 1rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    .content-wrap {
+      .content {
+        padding: 1rem 0 2rem 4rem;
+        border-left: 8px solid #d01c3a;
+        h1 {
+          font-size: 4rem;
+        }
+        p {
+          font-size: 2rem;
+        }
+        .btns {
+          a {
+            padding: 1.2rem 2.2rem;
+            font-size: 1.5rem;
+          }
         }
       }
     }
