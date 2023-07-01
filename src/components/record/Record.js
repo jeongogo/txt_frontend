@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Highcharts from "highcharts/highstock";
 import useStore from '../../modules/store';
 import bullet from "highcharts/modules/bullet.js";
@@ -108,6 +108,27 @@ const Record = ({ records, handleRecordDetail }) => {
     };
     return data;
   });
+
+  const proAgility = records.data.records.map((r) => {
+    let data = null;
+    data = {
+      categories: format(new Date(r.date), 'yyyy. MM. dd'),
+      proAgility1st: r.proAgility1st,
+      proAgility2nd: r.proAgility2nd,
+    };
+    return data;
+  });
+  
+  const sprint = records.data.records.map((r) => {
+    let data = null;
+    data = {
+      categories: format(new Date(r.date), 'yyyy. MM. dd'),
+      sprint1st: r.sprint1st,
+      sprint2nd: r.sprint2nd,
+    };
+    return data;
+  });
+
 
   /* Options */
 
@@ -642,24 +663,162 @@ const Record = ({ records, handleRecordDetail }) => {
     }
   };
 
+  const proAgilityOptions = {
+    title: {
+      text: '방향 전환 능력'
+    },
+    yAxis: {
+      title: {
+        text: null
+      }
+    },
+    xAxis: {
+      categories: proAgility.map((d) => (d.categories)),
+    },
+    accessibility: {
+      enabled: false
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false
+        },
+        cursor: 'pointer',
+        point: {
+          events: {
+            click: (e) => onRecordDetail(e)
+          }
+        }
+      }
+    },
+    series: [
+      {
+        name: '1st',
+        data: proAgility.map((d) => (d.proAgility1st)),
+      },
+      {
+        name: '2nd',
+        data: proAgility.map((d) => (d.proAgility2nd))
+      }
+    ],
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+  };
+
+  const sprintOptions = {
+    title: {
+      text: '전력질주 능력'
+    },
+    yAxis: {
+      title: {
+        text: null
+      }
+    },
+    xAxis: {
+      categories: sprint.map((d) => (d.categories)),
+    },
+    accessibility: {
+      enabled: false
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false
+        },
+        cursor: 'pointer',
+        point: {
+          events: {
+            click: (e) => onRecordDetail(e)
+          }
+        }
+      }
+    },
+    series: [
+      {
+        name: '1st',
+        data: sprint.map((d) => (d.sprint1st)),
+      },
+      {
+        name: '2nd',
+        data: sprint.map((d) => (d.sprint2nd))
+      }
+    ],
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container className='container' >
       <div className="content-wrap">
         <h1>{recordUser.name}</h1>
-        <h2>1. 근력 및 파워</h2>
+        <h2>근력 및 파워</h2>
         <HighchartsReact highcharts={ Highcharts } options={ maxStrOptions } />
         <HighchartsReact highcharts={ Highcharts } options={ powerOptions } />
-        <h2>2. 탄력 및 반응속도</h2>
+        <h2>탄력 및 반응속도</h2>
         <HighchartsReact highcharts={ Highcharts } options={ RSIAvgOptions } />
         <HighchartsReact highcharts={ Highcharts } options={ RSIMaxOptions } />
         <HighchartsReact highcharts={ Highcharts } options={ reactionRateOptions } />
-        <h2>3. 민첩성</h2>
+        <h2>민첩성</h2>
         <HighchartsReact highcharts={ Highcharts } options={ agilityFrontBackOptions } />
         <HighchartsReact highcharts={ Highcharts } options={ agilityLeftRightOptions } />
-        <h2>4. 몸통 회전 능력</h2>
-        <HighchartsReact highcharts={ Highcharts } options={ bodyRotationAbilityOptions } />
-        <h2>5. 악력</h2>
-        <HighchartsReact highcharts={ Highcharts } options={ gripStrengthOptions } />
+        {recordUser.mainEvent === 'tennis' &&
+          (
+            <>
+              <h2>몸통 회전 능력</h2>
+              <HighchartsReact highcharts={ Highcharts } options={ bodyRotationAbilityOptions } />
+              <h2>악력</h2>
+              <HighchartsReact highcharts={ Highcharts } options={ gripStrengthOptions } />
+            </>
+          )
+        }
+        {recordUser.mainEvent === 'football' &&
+          (
+            <>
+              <h2>방향 전환 능력</h2>
+              <HighchartsReact highcharts={ Highcharts } options={ proAgilityOptions } />
+              <h2>전력질주 능력</h2>
+              <HighchartsReact highcharts={ Highcharts } options={ sprintOptions } />
+            </>
+          )
+        }
       </div>
     </Container>
   )

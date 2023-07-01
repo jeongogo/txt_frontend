@@ -54,7 +54,6 @@ const Container = styled.div`
         a {
           display: inline-block;
           padding: 1.5rem 3rem;
-          margin-right: 2rem;
           font-size: 1.8rem;
           color: #fff;
           background-color: #d01c3a;
@@ -72,9 +71,33 @@ const Container = styled.div`
           font-size: 4rem;
         }
         p {
+          margin-top: 2rem;
           font-size: 2rem;
         }
         .btns {
+          a {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    background-position: center;
+    .content-wrap {
+      margin-top: -6rem;
+      .content {
+        padding-left: 0;
+        border-left: 0;
+        text-align: center;
+        h1 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 1.6rem;
+        }
+        .btns {
+          margin-top: 2rem;
           a {
             padding: 1.2rem 2.2rem;
             font-size: 1.5rem;

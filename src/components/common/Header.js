@@ -45,12 +45,14 @@ const Header = ({ theme }) => {
                   <Link to='/admin' target='_blank'>관리자</Link>
                 </li>
               }
-              <li>
-                <Link to={`/record/${currentUser.id}`}>기록보기</Link>
-              </li>
-              <li>
+              {!currentUser.isAdmin &&
+                <li>
+                  <Link to={`/record/${currentUser.id}`}>기록보기</Link>
+                </li>
+              }
+              {/* <li>
                 <Link to='/profile'>마이페이지</Link>
-              </li>
+              </li> */}
               <li>
                 <button type='button' onClick={onLogout}>로그아웃</button>
               </li>
@@ -90,6 +92,27 @@ const Container = styled.header`
         a, button {
           font-size: 1.6rem;
           font-weight: 300;
+        }
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    height: 6rem;
+    padding: 0 2rem;
+    .logo {
+      a {
+        img {
+          width: 10rem;
+        }
+      }
+    }
+    .tnb {
+      ul {
+        li {
+          margin-left: 1.5rem;
+          a, button {
+            font-size: 1.4rem;
+          }
         }
       }
     }

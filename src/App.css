@@ -21,6 +21,13 @@ body {
   padding-bottom: 4rem;
 }
 
+@media (max-width: 800px) {
+  .content-wrap {
+    padding-left: 1rem;
+    padding-right: 1.7rem;
+  }
+}
+
 .admin-container {
   position: relative;
   padding: 3rem;
@@ -29,6 +36,16 @@ body {
 
 .admin-container .title {
   font-size: 2.4rem;
+}
+
+@media (max-width: 800px) {
+  .admin-container {
+    padding: 7rem 1.7rem 2rem 1.7rem;
+    margin-left: 0;
+  }
+  .admin-container .title {
+    font-size: 1.8rem;
+  }
 }
 
 
@@ -83,9 +100,20 @@ button {
   height: 4rem;
 }
 
+.btn.sm {
+  width: 10rem;
+  height: 4rem;
+  font-size: 1.4rem;
+}
+
 .btn.red {
   color: #fff;
   background-color: #B71C1C;
+}
+
+.btn.gray {
+  color: #fff;
+  background-color: #666;
 }
 
 

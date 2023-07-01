@@ -9,21 +9,20 @@ const RegisterContainer = () => {
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
   const handleRegister = async (userData) => {
-    await client.post('/api/auth/register', userData)
-    .then((res) => {
-      const { user } = res.data;
+    try {
+      const { data } = await client.post('/api/auth/register', userData);
       setCurrentUser({ 
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        accessToken: res.data.accessToken,
-        isAdmin: user.isAdmin
+        id: data.user._id,
+        email: data.user.email,
+        name: data.user.name,
+        accessToken: data.accessToken,
+        isAdmin: data.user.isAdmin
       });
       navigate('/');
-
-    }).catch((e) => {
+    } catch (e) {
+      alert(e);
       console.log(e);
-    });
+    }
   }
 
   return (

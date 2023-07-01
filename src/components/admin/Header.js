@@ -32,6 +32,7 @@ const Container = styled.div`
   height: 100vh;
   padding: 3rem 2rem;
   background-color: #222;
+  z-index: 2;
   .logo {
     img {
       width: 90%;
@@ -47,6 +48,33 @@ const Container = styled.div`
           display: block;
           padding: 1.4rem 0;
           color: white;
+        }
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    padding: 0 2rem;
+    .logo {
+      img {
+        width: 10rem;
+      }
+    }
+    .lnb {
+      margin-top: 0;
+      ul {
+        display: flex;
+        border-top: 0;
+        li {
+          margin-left: 1rem;
+          border-bottom: 0;
+          a {
+            padding: 1.4rem 0;
+          }
         }
       }
     }

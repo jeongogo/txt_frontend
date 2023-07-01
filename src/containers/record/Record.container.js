@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import useStore from '../../modules/store';
@@ -10,6 +10,7 @@ const RecordContainer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const setRecordDetail = useStore((state) => state.setRecordDetail);
+  const setRecordUser = useStore((state) => state.setRecordUser);
 
   const getRecord = async () => {
     const { data } = await client.get(`/api/record/${id}`);
@@ -22,6 +23,15 @@ const RecordContainer = () => {
     setRecordDetail(data);
     navigate(`/record/detail/${id}`);
   }
+
+  
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await client.get(`/api/auth/user/${id}`);
+      setRecordUser(data.user);
+    }
+    getUser();
+  }, [id, setRecordUser]);
 
   return (
     <>

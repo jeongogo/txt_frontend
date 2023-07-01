@@ -1,21 +1,60 @@
-import React from 'react'
-import { useQuery } from "react-query";
+import { useState, useEffect } from 'react';
+import { useParams  } from 'react-router-dom';
 import client from "../../lib/api/client";
 import Header from '../../components/admin/Header';
 import Users from '../../components/admin/Users';
+import Loader from '../../components/common/Loader';
 
 const UsersContainer = () => {
-  const getUsers = async () => {
-    const { data } = await client.get('/api/admin/users');
-    return data;
-  }
+  const { username } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [searchName, setSearchName] = useState('');
 
-  const users = useQuery("users", getUsers);
+  const getUsers = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await client.get('/api/admin/users');
+      setUsers(data.users);
+    } catch (e) {
+      alert(e);
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  
+  useEffect(() => {
+    const getSearchByUsername = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await client.post('/api/admin/users/search', { name: username })
+        setUsers(data.users);
+      } catch (e) {
+        alert(e);
+        console.log(e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    if (username) {
+      getSearchByUsername();
+    } else {
+      getUsers();
+      setSearchName('');
+    }
+  }, [username]);
 
   return (
     <>
       <Header />
-      <Users users={users} />
+      {isLoading
+        ?
+          <Loader />
+        :
+          <Users users={users} searchName={searchName} setSearchName={setSearchName} />
+      }
     </>
   )
 }

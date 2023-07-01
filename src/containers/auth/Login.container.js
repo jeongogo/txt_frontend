@@ -9,25 +9,24 @@ const LoginContainer = () => {
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
   const handleLogin = async (userData) => {
-    await client.post('/api/auth/login', userData)
-    .then((res) => {
-      if (res.data.status === 'failed') {
+    try {
+      const { data } = await client.post('/api/auth/login', userData);
+      if (data.status === 'failed') {
         alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
-        return false;
+        return;
       }
-      const { user } = res.data;
       setCurrentUser({ 
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        accessToken: res.data.accessToken,
-        isAdmin: user.isAdmin
+        id: data.user._id,
+        email: data.user.email,
+        name: data.user.name,
+        accessToken: data.accessToken,
+        isAdmin: data.user.isAdmin
       });
-      console.log(res.data);
       navigate('/');
-    }).catch((e) => {
-      console.log(e)
-    });
+    } catch (e) {
+      alert(e);
+      console.log(e);
+    }
   }
 
   return (

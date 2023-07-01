@@ -46,8 +46,8 @@ const Register = ({ handleRegister }) => {
         <div className='input-box'>
           <label>종목</label>
           <select {...register("mainEvent", { required: true })}>
-            <option value="축구">축구</option>
-            <option value="테니스">테니스</option>
+            <option value="football">축구</option>
+            <option value="tennis">테니스</option>
           </select>
         </div>
         <div className='input-box'>
